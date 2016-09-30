@@ -11,6 +11,7 @@ char * myStrcpy(char *dest, char *source);
 char * myStrncat(char *dest, char *source, int n);
 int myStrcmp(char *s1, char *s2);
 char * myStrchr(char *s, char c);
+char * myStrstr(char *haystack, char *needle);
 
 void main(){
     printf("\n");
@@ -58,9 +59,14 @@ void main(){
     printf("Comparing s2 to s3: %d\n\n", strcmp(s2,s3));
 
     printf("Testing strchr()\n");
-    printf("Looking for 'e' in s1: %s\n", myStrchr(s1,'e'));
-    printf("Looking for 'g' in s3: %s\n", myStrchr(s3,'g'));
+    printf("Looking for 'e' in s1: %c\n", *myStrchr(s1,'e'));
+    printf("Looking for 'g' in s3: %c\n", *myStrchr(s3,'g'));
     printf("Looking for 'x' in s3: %s\n\n", myStrchr(s3,'x'));
+
+    printf("Testing strstr()\n");
+    printf("Looking for \"el\" in s1: %s\n", myStrstr(s1,"el"));
+    printf("Looking for \"mor\" in s3: %s\n", myStrstr(s3,"mor"));
+    printf("Looking for \"ore\" in s3: %s\n\n", myStrstr(s3,"ore"));
 }
 
 
@@ -86,7 +92,7 @@ char * myStrcpy(char * dest, char * source){
 char * myStrncat(char *dest, char *source, int n){
     int i = myStrlen(dest);
     int j = 0;
-    while (*(source + j) && j < n){//compare this termination to the real strncat()
+    while (*(source + j) && j < n){
 	*(dest + i) = *(source + j);
 	i++;
 	j++;
@@ -112,4 +118,24 @@ char * myStrchr(char *s, char c){
 	}
     }
     return s + i;
+}
+
+char * myStrstr(char * haystack, char * needle){
+    int i = 0;
+    while (*(haystack + i)){
+	if (*(haystack + i) == *(needle)){
+	    int j = 0;
+	    int k = i;
+	    int positive = 1;
+	    while (*(needle + j) == *(haystack + k + j)){
+		j++;
+		k++;
+	    }
+	    if (*(needle + j) == 0){
+		return *(haystack + i);
+	    }
+	}
+	i++;
+    }
+    return NULL;
 }
