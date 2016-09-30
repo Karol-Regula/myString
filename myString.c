@@ -10,6 +10,7 @@ int myStrlen(char *);
 char * myStrcpy(char *dest, char *source);
 char * myStrncat(char *dest, char *source, int n);
 int myStrcmp(char *s1, char *s2);
+char * myStrchr(char *s, char c);
 
 void main(){
     printf("\n");
@@ -37,19 +38,29 @@ void main(){
 
     printf("Testing strncat()\n");
     printf("Concatenated s1 to s2 (n = 3): %s\n", myStrncat(s2, s1, 3));
-    printf("Concatenated s3 into s2 (n = 100): %s\n\n", myStrncat(s2, s3, 100));
+    printf("Concatenated s3 into s2 (n = 100): %s\n", myStrncat(s2, s3, 100));
     
     //resetting strings back to initial states
     myStrcpy(s1, "Hello");
     myStrcpy(s2, "Goodbye");
     myStrcpy(s3, "Morning");
 
+    printf("Comparison against the built-in strcat() function:\n");
+    printf("Concatenated s1 to s2 (n = 3): %s\n", strncat(s2, s1, 3));
+    printf("Concatenated s3 into s2 (n = 100): %s\n\n", strncat(s2, s3, 100));
+    
+
     printf("Testing strcmp()\n");
     printf("Comparing s1 to s2: %d\n", myStrcmp(s1,s2));
     printf("Comparing s2 to s3: %d\n", myStrcmp(s2,s3));
-    printf("Comparison against the built-in strcmp()function:\n");
+    printf("Comparison against the built-in strcmp() function:\n");
     printf("Comparing s1 to s2: %d\n", strcmp(s1,s2));
     printf("Comparing s2 to s3: %d\n\n", strcmp(s2,s3));
+
+    printf("Testing strchr()\n");
+    printf("Looking for 'e' in s1: %s\n", myStrchr(s1,'e'));
+    printf("Looking for 'g' in s3: %s\n", myStrchr(s3,'g'));
+    printf("Looking for 'x' in s3: %s\n\n", myStrchr(s3,'x'));
 }
 
 
@@ -90,4 +101,15 @@ int myStrcmp(char *s1, char *s2){//this function may need specal tests
 	i++;
     }
     return *(s1 + i) - *(s2 + i);
+}
+
+char * myStrchr(char *s, char c){
+    int i = 0;
+    while (*(s + i) != c){
+	i++;
+	if (*(s + i) == 0){
+	    return NULL;
+	}
+    }
+    return s + i;
 }
