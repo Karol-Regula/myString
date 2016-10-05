@@ -62,11 +62,13 @@ void main(){
     printf("Looking for 'e' in s1: %c\n", *myStrchr(s1,'e'));
     printf("Looking for 'g' in s3: %c\n", *myStrchr(s3,'g'));
     printf("Looking for 'x' in s3: %s\n\n", myStrchr(s3,'x'));
-
+    
+    /*
     printf("Testing strstr()\n");
     printf("Looking for \"el\" in s1: %s\n", myStrstr(s1,"el"));
     printf("Looking for \"mor\" in s3: %s\n", myStrstr(s3,"mor"));
     printf("Looking for \"ore\" in s3: %s\n\n", myStrstr(s3,"ore"));
+    */
 }
 
 
@@ -120,7 +122,9 @@ char * myStrchr(char *s, char c){
     return s + i;
 }
 
+
 char * myStrstr(char * haystack, char * needle){
+    /*
     int i = 0;
     while (*(haystack + i)){
 	if (*(haystack + i) == *(needle)){
@@ -138,4 +142,5 @@ char * myStrstr(char * haystack, char * needle){
 	i++;
     }
     return NULL;
+    */
 }
